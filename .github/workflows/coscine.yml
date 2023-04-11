@@ -40,9 +40,6 @@ jobs:
       - name: Build static site
         working-directory: ./coscine-static-site-generator/
         run: python -m src -t "$COSCINE_API_TOKEN" -p "$PROJECT_NAME" -r "$RESOURCE_NAME" -y -o ../public
-      - name: Setup Pages
-        id: pages
-        uses: actions/configure-pages@v3
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:

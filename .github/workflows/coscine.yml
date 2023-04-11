@@ -30,6 +30,13 @@ jobs:
       PROJECT_NAME: "Solaris"
       RESOURCE_NAME": "Chest X-Ray CNN"
     steps:
+      - run: echo $PROJECT_NAME
+      - run: echo $RESOURCE_NAME
+      - run: echo "$PROJECT_NAME"
+      - run: echo "$RESOURCE_NAME"
+      - run: echo $COSCINE_API_TOKEN
+      - run: echo "$COSCINE_API_TOKEN"
+      - run: apt install esjrierohaouhuoafuhaf
       - run: python -V
       - run: sudo apt install -y git
       - run: git clone https://git.rwth-aachen.de/coscine/community-features/coscine-static-site-generator.git
@@ -38,7 +45,7 @@ jobs:
         run: pip install -r requirements.txt
       - name: Build static site
         working-directory: ./coscine-static-site-generator/
-        run: python -m src -t "$COSCINE_API_TOKEN" -p "$PROJECT" -r "$RESOURCE" -y -o ../public
+        run: python -m src -t "$COSCINE_API_TOKEN" -p "$PROJECT_NAME" -r "$RESOURCE_NAME" -y -o ../public
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v3

@@ -29,16 +29,8 @@ jobs:
     env:
       PROJECT_NAME: "Solaris"
       RESOURCE_NAME": "Chest X-Ray CNN"
+      COSCINE_API_TOKEN: ${{vars.COSCINE_API_TOKEN}}
     steps:
-      - run: echo $PROJECT_NAME
-      - run: echo ${RESOURCE_NAME}
-      - run: echo "${PROJECT_NAME}"
-      - run: echo "${RESOURCE_NAME}"
-      - run: echo ${{vars.COSCINE_API_TOKEN}}
-      - run: echo "${{vars.COSCINE_API_TOKEN}}"
-      - run: echo ${{secrets.COSCINE_API_TOKEN}}
-      - run: echo "${{secrets.COSCINE_API_TOKEN}}"
-      - run: apt install esjrierohaouhuoafuhaf
       - run: python -V
       - run: sudo apt install -y git
       - run: git clone https://git.rwth-aachen.de/coscine/community-features/coscine-static-site-generator.git

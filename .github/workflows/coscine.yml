@@ -31,12 +31,7 @@ jobs:
       RESOURCE_NAME": "Chest X-Ray CNN"
     steps:
       - run: python -V
-      - name: Install Git
-        run: apt install -y git
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          submodules: recursive
+      - run: sudo apt install -y git
       - run: git clone https://git.rwth-aachen.de/coscine/community-features/coscine-static-site-generator.git
       - run: cd ./coscine-static-site-generator/
       - run: pip install -r requirements.txt

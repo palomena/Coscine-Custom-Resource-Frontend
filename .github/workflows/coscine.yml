@@ -38,7 +38,7 @@ jobs:
         run: pip install -r requirements.txt
       - name: Build static site
         working-directory: ./coscine-static-site-generator/
-        run: python -m src -t "${COSCINE_API_TOKEN}" -p "${PROJECT}" -r "${RESOURCE}" -y -o ../public
+        run: python -m src -t "$COSCINE_API_TOKEN" -p "$PROJECT" -r "$RESOURCE" -y -o ../public
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v3

@@ -4,6 +4,10 @@ name: Deploy Coscine Static Site to GitHub Pages
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    # Run every day at 8 am UTC
+    - cron:  '0 8 * * *'
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:

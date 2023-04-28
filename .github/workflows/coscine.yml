@@ -31,8 +31,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      PROJECT_NAME: "Solaris"
-      RESOURCE_NAME: "Chest X-Ray CNN"
+      PROJECT_NAME: ${{vars.COSCINE_PROJECT_NAME}}
+      RESOURCE_NAME: ${{vars.COSCINE_RESOURCE_NAME}}
       COSCINE_API_TOKEN: ${{vars.COSCINE_API_TOKEN}}
     steps:
       - run: python -V

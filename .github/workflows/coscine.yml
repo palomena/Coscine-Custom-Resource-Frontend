@@ -72,11 +72,11 @@ jobs:
         run: pip install -r requirements.txt
       - name: Build static site
         working-directory: ./coscine-static-site-generator/
-        run: python -m src -t "$COSCINE_API_TOKEN" -p "$PROJECT_NAME" -r "$RESOURCE_NAME" -y -o ../public/${{ matrix.resource-name }}  # Optionally customize output directory per resource
+        run: python -m src -t "$COSCINE_API_TOKEN" -p "$PROJECT_NAME" -r "$RESOURCE_NAME" -y -o ../public
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./public/${{ matrix.resource-name }}
+          path: ./public
 
   # Deployment job
   deploy:

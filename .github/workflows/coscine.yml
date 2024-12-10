@@ -67,6 +67,9 @@ jobs:
       - run: python -V
       - run: sudo apt install -y git
       - run: git clone https://git.rwth-aachen.de/coscine/community-features/coscine-static-site-generator.git
+       # Create public directory if it doesn't exist
+      - name: Create public directory
+        run: mkdir -p ./public
       - name: Install requirements
         working-directory: ./coscine-static-site-generator/
         run: pip install -r requirements.txt

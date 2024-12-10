@@ -80,24 +80,10 @@ jobs:
         working-directory: ./coscine-static-site-generator/
         run: python -m src -t "$COSCINE_API_TOKEN" -p "$PROJECT_NAME" -r "$RESOURCE_NAME" -y -o ../public/${{ matrix.resource-name }}
       
-      # Debugging step to list contents of public directory.
-      - name: List public directory contents
-        run: ls -R ../public
-
-      # Check if there are any files in public before uploading.
-      - name: Check if public directory has content
-        run: |
-          if [ "$(ls -A ../public)" ]; then
-            echo "Public directory has content."
-          else
-            echo "Public directory is empty."
-            exit 1  # Exit with an error code if empty.
-          fi
-      
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./public/**
+          path: ./public/*
 
   # Deployment job
   deploy:

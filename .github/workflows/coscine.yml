@@ -35,7 +35,7 @@ jobs:
         resource-name: 
           - DhakanDB_2019
           - BommanaS_2023
-          - BackhedS_2023
+          - BackhedF_2015
           - ChngKR_2016
           - DeFilippisF_2019
           - BaruchEN_2021
@@ -48,7 +48,7 @@ jobs:
           - Bengtsson-PalmeJ_2015
           - AverinaOV_2020
           - FerrettiP_2018
-          - AsnicarF2017
+          - AsnicarF_2017
           - DavarD_2021
           - ChuDM_2017
           - BedarfJR_2017

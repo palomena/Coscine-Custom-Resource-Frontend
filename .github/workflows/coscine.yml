@@ -67,12 +67,19 @@ jobs:
       - run: python -V
       - run: sudo apt install -y git
       - run: git clone https://git.rwth-aachen.de/coscine/community-features/coscine-static-site-generator.git
+      
+      # Create public directory if it doesn't exist
+      - name: Create public directory
+        run: mkdir -p ./public     
+      
       - name: Install requirements
         working-directory: ./coscine-static-site-generator/
         run: pip install -r requirements.txt
+        
       - name: Build static site
         working-directory: ./coscine-static-site-generator/
         run: python -m src -t "$COSCINE_API_TOKEN" -p "$PROJECT_NAME" -r "$RESOURCE_NAME" -y -o ../public/${{ matrix.resource-name }}
+   
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:

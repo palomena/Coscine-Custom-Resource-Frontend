@@ -30,10 +30,39 @@ jobs:
   # Build job
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        resource-name: 
+          - DhakanDB_2019
+          - BommanaS_2023
+          - BackhedS_2023
+          - ChngKR_2016
+          - DeFilippisF_2019
+          - BaruchEN_2021
+          - ContevilleLC_2019
+          - FanY_2023
+          - BritolL_2016
+          - BoktorJC_2023
+          - CosteaPl_2017
+          - DavidLA_2015
+          - Bengtsson-PalmeJ_2015
+          - AverinaOV_2020
+          - FerrettiP_2018
+          - AsnicarF2017
+          - DavarD_2021
+          - ChuDM_2017
+          - BedarfJR_2017
+          - BaiX_2021
+          - Castra-NallarE_2015
+          - AsnicarF_2021
+          - FengQ_2015
+          - ChengpingW_2017
+          - ArtachoA_2021
+          - BrooksB_2017
     env:
-      PROJECT_NAME: ${{vars.COSCINE_PROJECT_NAME}}
-      RESOURCE_NAME: ${{vars.COSCINE_RESOURCE_NAME}}
-      COSCINE_API_TOKEN: ${{vars.COSCINE_API_TOKEN}}
+      PROJECT_NAME: ${{ vars.COSCINE_PROJECT_NAME }}
+      RESOURCE_NAME: ${{ matrix.resource-name }}  # Use the current resource from the matrix
+      COSCINE_API_TOKEN: ${{ vars.COSCINE_API_TOKEN }}
     steps:
       - run: python -V
       - run: sudo apt install -y git
@@ -43,11 +72,11 @@ jobs:
         run: pip install -r requirements.txt
       - name: Build static site
         working-directory: ./coscine-static-site-generator/
-        run: python -m src -t "$COSCINE_API_TOKEN" -p "$PROJECT_NAME" -r "$RESOURCE_NAME" -y -o ../public
+        run: python -m src -t "$COSCINE_API_TOKEN" -p "$PROJECT_NAME" -r "$RESOURCE_NAME" -y -o ../public/${{ matrix.resource-name }}  # Optionally customize output directory per resource
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./public
+          path: ./public/${{ matrix.resource-name }}
 
   # Deployment job
   deploy:

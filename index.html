@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coscine Static Site</title>
+    <style>
+        :root {
+            --coscine-dark: #00549F;
+            --coscine-light: #8EBAE6;
+        }
+
+        @font-face {
+            font-family: "Roboto";
+            src: url("Roboto-Regular.ttf");
+        }
+
+        body {
+            background-color: var(--coscine-light);
+            color: white;
+            font-family: "Roboto", sans-serif;
+            font-size: 20px;
+            max-width: 50%;
+            margin: auto;
+            padding-top: 25px;
+            padding-bottom: 25px;
+        }
+
+        @media only screen and (orientation: portrait) {
+            body {
+                max-width: 95%;
+            }
+        }
+
+        header, footer {
+            text-align: center;
+        }
+
+        header nav {
+            margin-bottom: 20px;
+        }
+
+        header nav a {
+            background-color: white;
+            color: var(--coscine-dark);
+            font-weight: bold;
+            text-decoration: none;
+            padding-left: 8px;
+            padding-right: 8px;
+            padding-top: 4px;
+            padding-bottom: 3px;
+            margin-right: 10px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 2px rgba(0, 0, 0, 50%);
+        }
+
+        header nav a:hover {
+            background-color: var(--coscine-light);
+            color: white;
+        }
+
+        hr {
+            color: var(--coscine-dark);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="your-image.jpg" alt="Coscine Logo" width="180px" height="180px">
+    <nav>
+        <!-- Dynamically generated navigation will be inserted here -->
+        <!-- Example of static navigation, but it will be overwritten by the generated content -->
+        <div id="dynamic-nav"></div>
+    </nav>
+</header>
+
+<h1>Welcome to Coscine Resources</h1>
+
+<!-- The content for each page will be automatically inserted -->
+<p>This is the main content of the page.</p>
+
+<footer>
+    <p>&copy; 2024 Coscine. All rights reserved.</p>
+</footer>
+
+<script>
+    // Load the generated navigation content
+    fetch('/public/navigation.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('dynamic-nav').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading navigation:', error));
+</script>
+
+</body>
+</html>

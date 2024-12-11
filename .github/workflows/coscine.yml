@@ -96,7 +96,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./coscine-static-site-generator/public/
+          path: ./public/
 
   deploy:
     environment:

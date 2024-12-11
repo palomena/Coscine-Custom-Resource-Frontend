@@ -72,13 +72,10 @@ jobs:
         run: |
           RESOURCE_NAMES=("DhakanDB_2019" "BommanaS_2023" "BackhedF_2015" "ChngKR_2016" "DeFilippisF_2019" "BaruchEN_2021" "ContevilleLC_2019" "FanY_2023" "BritoIL_2016" "BoktorJC_2023" "CosteaPI_2017" "DavidLA_2015" "Bengtsson-PalmeJ_2015" "AverinaOV_2020" "FerrettiP_2018" "AsnicarF_2017" "DavarD_2021" "ChuDM_2017" "BedarfJR_2017" "BaiX_2021" "Castro-NallarE_2015" "AsnicarF_2021" "FengQ_2015" "ChengpingW_2017" "ArtachoA_2021" "BrooksB_2017")
 
-          # Ensure public directory exists at the correct location
-          mkdir -p ./public
-
           # Generate static site for each resource
           for RESOURCE in "${RESOURCE_NAMES[@]}"; do
             echo "Processing resource: $RESOURCE"
-            python -m src -t "$COSCINE_API_TOKEN" -p "$PROJECT_NAME" -r "$RESOURCE" -y -o ./public/"$RESOURCE"
+            python -m src -t "$COSCINE_API_TOKEN" -p "$PROJECT_NAME" -r "$RESOURCE" -y -o ./public
           done
 
           # Generate dynamic navigation HTML

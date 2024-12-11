@@ -85,6 +85,13 @@ jobs:
             echo "Processing resource: $RESOURCE"
             python -m src -t "$COSCINE_API_TOKEN" -p "$PROJECT_NAME" -r "$RESOURCE" -y -o ../public/"$RESOURCE"
           done
+      
+          # Generate dynamic navigation HTML
+          HTML_NAV=""
+          for RESOURCE in "${RESOURCE_NAMES[@]}"; do
+            HTML_NAV+="<a class='tab' href='/public/$RESOURCE/index.html' target='_blank'>$RESOURCE</a>"
+          done
+          echo "$HTML_NAV" > public/navigation.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1

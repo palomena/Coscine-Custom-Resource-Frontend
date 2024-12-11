@@ -85,7 +85,7 @@ jobs:
           done
 
           # Ensure the navigation.html file is placed in the correct directory
-          echo "$HTML_NAV" > ./coscine-static-site-generator/public/navigation.html
+          echo "$HTML_NAV" > ./public/navigation.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1

@@ -46,10 +46,10 @@ jobs:
         working-directory: ./coscine-static-site-generator/
         run: pip install -r requirements.txt
 
-      - name: Process resource names
+      - name: Build static site
+        working-directory: ./coscine-static-site-generator/
         run: |
           RESOURCE_NAMES=("DhakanDB_2019" "BommanaS_2023" "BackhedF_2015" "ChngKR_2016" "DeFilippisF_2019" "BaruchEN_2021" "ContevilleLC_2019" "FanY_2023" "BritoIL_2016" "BoktorJC_2023" "CosteaPI_2017" "DavidLA_2015" "Bengtsson-PalmeJ_2015" "AverinaOV_2020" "FerrettiP_2018" "AsnicarF_2017" "DavarD_2021" "ChuDM_2017" "BedarfJR_2017" "BaiX_2021" "Castro-NallarE_2015" "AsnicarF_2021" "FengQ_2015" "ChengpingW_2017" "ArtachoA_2021" "BrooksB_2017")
-          cd ./coscine-static-site-generator
           for RESOURCE in "${RESOURCE_NAMES[@]}"; do
             echo "Processing resource: $RESOURCE"
             python -m src -t "$COSCINE_API_TOKEN" -p "$PROJECT_NAME" -r "$RESOURCE" -y -o ../public/"$RESOURCE"

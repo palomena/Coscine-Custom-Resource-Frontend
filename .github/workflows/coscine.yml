@@ -77,6 +77,7 @@ jobs:
             echo "Processing resource: $RESOURCE"
             pwd 
             dir
+            mkdir -p ../public/"$RESOURCE_NAME"
             python -m src -t "$COSCINE_API_TOKEN" -p "$PROJECT_NAME" -r "$RESOURCE" -y -o ../public/"$RESOURCE"
           done
 

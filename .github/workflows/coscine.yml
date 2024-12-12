@@ -31,13 +31,6 @@ jobs:
       - name: Install git
         run: sudo apt install -y git
 
-      - name: Clone repository
-        run: git clone https://git.rwth-aachen.de/coscine/community-features/coscine-static-site-generator.git
-
-      - name: Install requirements
-        working-directory: ./coscine-static-site-generator/
-        run: pip install -r requirements.txt
-
       - name: Checkout Repository
         uses: actions/checkout@v2
 
@@ -49,6 +42,13 @@ jobs:
           cp index.html public/
           cp style.css public/
           cp coscine_logo.gif public/
+
+      - name: Clone repository
+        run: git clone https://git.rwth-aachen.de/coscine/community-features/coscine-static-site-generator.git
+
+      - name: Install requirements
+        working-directory: ./coscine-static-site-generator/
+        run: pip install -r requirements.txt
 
       - name: Build static site and generate navigation tabs
         working-directory: ./coscine-static-site-generator/

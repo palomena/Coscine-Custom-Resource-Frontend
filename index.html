@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coscine Static Site</title>
-    <link rel="stylesheet" href="/InvestiGUT/styles.css">
     <style>
         :root {
             --coscine-dark: #00549F;
@@ -87,7 +86,7 @@
 
 <script>
     // Load the generated navigation content from the correct location
-    fetch('/InvestiGUT/navigation.html')  // Updated to point to the new path
+    fetch('/InvestiGUT/index.html')  // Updated to point to the new path
         .then(response => response.text())
         .then(data => {
             document.getElementById('dynamic-nav').innerHTML = data;

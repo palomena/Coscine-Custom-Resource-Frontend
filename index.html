@@ -59,6 +59,23 @@
             color: white;
         }
 
+        /* Additional styling for .tab class (optional if needed separately) */
+        .tab {
+            background-color: white;
+            color: var(--coscine-dark);
+            font-weight: bold;
+            text-decoration: none;
+            padding: 4px 8px;
+            margin-right: 10px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+        }
+    
+        .tab:hover {
+            background-color: var(--coscine-light);
+            color: white;
+        }
+
         hr {
             color: var(--coscine-dark);
         }
@@ -69,8 +86,6 @@
 <header>
     <img src="your-image.jpg" alt="Coscine Logo" width="180px" height="180px">
     <nav>
-        <!-- Dynamically generated navigation will be inserted here -->
-        <!-- Example of static navigation, but it will be overwritten by the generated content -->
         <div id="dynamic-nav"></div>
     </nav>
 </header>
@@ -85,10 +100,16 @@
 </footer>
 
 <script>
-    // Load the generated navigation content from the correct location
-    fetch('/InvestiGUT/navigation.html')  // Updated to point to the new path
-        .then(response => response.text())
+    // Load the generated navigation content
+    fetch('/InvestiGUT/navigation.html')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.text();
+        })
         .then(data => {
+            // Insert the navigation links into the dynamic-nav div
             document.getElementById('dynamic-nav').innerHTML = data;
         })
         .catch(error => console.error('Error loading navigation:', error));

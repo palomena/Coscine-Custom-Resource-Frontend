@@ -68,7 +68,7 @@
 <header>
     <img src="coscine_logo.gif" alt="Coscine Logo" width="180px" height="180px">
     <nav>
-        <div id="dynamic-nav"></div>
+        <a class="tab" href="/InvestiGUT/DhakanDB_2019/index.html" target="_blank">DhakanDB_2019</a><a class="tab" href="/InvestiGUT/BommanaS_2023/index.html" target="_blank">BommanaS_2023</a><a class="tab" href="/InvestiGUT/BackhedF_2015/index.html" target="_blank">BackhedF_2015</a><a class="tab" href="/InvestiGUT/ChngKR_2016/index.html" target="_blank">ChngKR_2016</a><a class="tab" href="/InvestiGUT/DeFilippisF_2019/index.html" target="_blank">DeFilippisF_2019</a><a class="tab" href="/InvestiGUT/BaruchEN_2021/index.html" target="_blank">BaruchEN_2021</a><a class="tab" href="/InvestiGUT/ContevilleLC_2019/index.html" target="_blank">ContevilleLC_2019</a><a class="tab" href="/InvestiGUT/FanY_2023/index.html" target="_blank">FanY_2023</a><a class="tab" href="/InvestiGUT/BritoIL_2016/index.html" target="_blank">BritoIL_2016</a><a class="tab" href="/InvestiGUT/BoktorJC_2023/index.html" target="_blank">BoktorJC_2023</a><a class="tab" href="/InvestiGUT/CosteaPI_2017/index.html" target="_blank">CosteaPI_2017</a><a class="tab" href="/InvestiGUT/DavidLA_2015/index.html" target="_blank">DavidLA_2015</a><a class="tab" href="/InvestiGUT/Bengtsson-PalmeJ_2015/index.html" target="_blank">Bengtsson-PalmeJ_2015</a><a class="tab" href="/InvestiGUT/AverinaOV_2020/index.html" target="_blank">AverinaOV_2020</a><a class="tab" href="/InvestiGUT/FerrettiP_2018/index.html" target="_blank">FerrettiP_2018</a><a class="tab" href="/InvestiGUT/AsnicarF_2017/index.html" target="_blank">AsnicarF_2017</a><a class="tab" href="/InvestiGUT/DavarD_2021/index.html" target="_blank">DavarD_2021</a><a class="tab" href="/InvestiGUT/ChuDM_2017/index.html" target="_blank">ChuDM_2017</a><a class="tab" href="/InvestiGUT/BedarfJR_2017/index.html" target="_blank">BedarfJR_2017</a><a class="tab" href="/InvestiGUT/BaiX_2021/index.html" target="_blank">BaiX_2021</a><a class="tab" href="/InvestiGUT/Castro-NallarE_2015/index.html" target="_blank">Castro-NallarE_2015</a><a class="tab" href="/InvestiGUT/AsnicarF_2021/index.html" target="_blank">AsnicarF_2021</a><a class="tab" href="/InvestiGUT/FengQ_2015/index.html" target="_blank">FengQ_2015</a><a class="tab" href="/InvestiGUT/ChengpingW_2017/index.html" target="_blank">ChengpingW_2017</a><a class="tab" href="/InvestiGUT/ArtachoA_2021/index.html" target="_blank">ArtachoA_2021</a><a class="tab" href="/InvestiGUT/BrooksB_2017/index.html" target="_blank">BrooksB_2017</a>
     </nav>
 </header>
 
@@ -81,21 +81,6 @@
     <p>&copy; 2024 Coscine. All rights reserved.</p>
 </footer>
   
-<script>
-    // Load the generated navigation content
-    fetch('/InvestiGUT/navigation.html')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.text();
-        })
-        .then(data => {
-            // Insert the navigation links into the dynamic-nav div
-            document.getElementById('dynamic-nav').innerHTML = data;
-        })
-        .catch(error => console.error('Error loading navigation:', error));
-</script>
 
 </body>
 </html>

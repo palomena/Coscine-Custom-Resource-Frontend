@@ -67,6 +67,9 @@ jobs:
         working-directory: ./coscine-static-site-generator/
         run: pip install -r requirements.txt
 
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
       - name: Copy webpage
         run: |
           pwd

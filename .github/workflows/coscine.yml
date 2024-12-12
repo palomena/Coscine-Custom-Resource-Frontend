@@ -73,6 +73,7 @@ jobs:
       - name: Copy webpage
         run: |
           pwd
+          mkdir -p public/
           dir
           cp index.html public/
           cp style.css public/

@@ -51,8 +51,11 @@ header nav a {
 	padding-top: 4px;
 	padding-bottom: 3px;
 	margin-right: 10px;
+	margin-bottom: 10px;
 	border-radius: 5px;
 	box-shadow: 2px 2px 2px rgba(0, 0, 0, 50%);
+
+	display: block;
 }
 
 header nav a:hover {

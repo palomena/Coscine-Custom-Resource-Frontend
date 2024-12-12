@@ -69,6 +69,8 @@ jobs:
 
       - name: Copy webpage
         run: |
+          pwd
+          dir
           cp index.html public/
           cp style.css public/
           

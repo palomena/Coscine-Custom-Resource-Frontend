@@ -90,6 +90,19 @@ jobs:
           # Ensure the navigation.html file is placed in the correct directory
           echo "$HTML_NAV" > ../public/navigation.html
 
+      - name: Dynamic file splitting
+        working-directory: ./coscine-static-site-generator/
+        run: |
+          MAX_SIZE=2G # Max file size limit (e.g., 2 GB)
+          find ../public -type f | while read FILE; do
+            FILE_SIZE=$(stat -c%s "$FILE")
+            if [ "$FILE_SIZE" -ge $((2**31)) ]; then
+              echo "Splitting $FILE..."
+              split -b $MAX_SIZE -d "$FILE" "${FILE}.part"
+              rm "$FILE"
+            fi
+          done
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:

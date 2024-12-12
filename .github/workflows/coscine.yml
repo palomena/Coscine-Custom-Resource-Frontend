@@ -71,48 +71,37 @@ jobs:
         working-directory: ./coscine-static-site-generator/
         run: |
           RESOURCE_NAMES=("DhakanDB_2019" "BommanaS_2023" "BackhedF_2015" "ChngKR_2016" "DeFilippisF_2019" "BaruchEN_2021" "ContevilleLC_2019" "FanY_2023" "BritoIL_2016" "BoktorJC_2023" "CosteaPI_2017" "DavidLA_2015" "Bengtsson-PalmeJ_2015" "AverinaOV_2020" "FerrettiP_2018" "AsnicarF_2017" "DavarD_2021" "ChuDM_2017" "BedarfJR_2017" "BaiX_2021" "Castro-NallarE_2015" "AsnicarF_2021" "FengQ_2015" "ChengpingW_2017" "ArtachoA_2021" "BrooksB_2017")
-
-          MAX_SIZE=$((2**31)) # 2 GB size limit in bytes
-
-          # Generate static site and split files for each resource
+          # Generate static site for each resource
           for RESOURCE in "${RESOURCE_NAMES[@]}"; do
             echo "Processing resource: $RESOURCE"
+            pwd 
+            dir
             mkdir -p ../public/$RESOURCE
             python -m src -t "$COSCINE_API_TOKEN" -p "$PROJECT_NAME" -r "$RESOURCE" -y -o ../public/"$RESOURCE"
-
-            # Split large files for the resource
-            echo "Checking for large files in resource $RESOURCE..."
-            find ../public/$RESOURCE -type f | while read FILE; do
-              FILE_SIZE=$(stat -c%s "$FILE")
-              if [ "$FILE_SIZE" -ge "$MAX_SIZE" ]; then
-                echo "Splitting $FILE..."
-                split -b "$MAX_SIZE" -d "$FILE" "${FILE}.part"
-                rm "$FILE"
-              fi
-            done
           done
-
           # Generate dynamic navigation HTML
           HTML_NAV=""
           for RESOURCE in "${RESOURCE_NAMES[@]}"; do
             HTML_NAV+="<a class='tab' href='/public/$RESOURCE/index.html' target='_blank'>$RESOURCE</a>"
           done
-
+          # Ensure the navigation.html file is placed in the correct directory
           echo "$HTML_NAV" > ../public/navigation.html
-
-      - name: Prepare artifact for upload
+      - name: Dynamic file splitting
         working-directory: ./coscine-static-site-generator/
         run: |
-          # Tar the directory to ensure split files are included correctly
-          tar -cf ../public-artifact.tar ../public
-
-      - name: Upload artifact with retries
-        run: |
-          for i in {1..3}; do
-            echo "Attempt $i to upload artifact"
-            gh actions upload-artifact --path ../public-artifact.tar && break
-            sleep 10
+          MAX_SIZE=2G # Max file size limit (e.g., 2 GB)
+          find ../public -type f | while read FILE; do
+            FILE_SIZE=$(stat -c%s "$FILE")
+            if [ "$FILE_SIZE" -ge $((2**31)) ]; then
+              echo "Splitting $FILE..."
+              split -b $MAX_SIZE -d "$FILE" "${FILE}.part"
+              rm "$FILE"
+            fi
           done
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./public
 
   deploy:
     environment:

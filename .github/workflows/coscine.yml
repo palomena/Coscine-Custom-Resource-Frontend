@@ -93,20 +93,31 @@ jobs:
       - name: Dynamic file splitting
         working-directory: ./coscine-static-site-generator/
         run: |
-          MAX_SIZE=2G # Max file size limit (e.g., 2 GB)
+          MAX_SIZE=$((2**31)) # 2 GB size limit in bytes
           find ../public -type f | while read FILE; do
             FILE_SIZE=$(stat -c%s "$FILE")
-            if [ "$FILE_SIZE" -ge $((2**31)) ]; then
+            if [ "$FILE_SIZE" -ge "$MAX_SIZE" ]; then
               echo "Splitting $FILE..."
-              split -b $MAX_SIZE -d "$FILE" "${FILE}.part"
+              split -b "$MAX_SIZE" -d "$FILE" "${FILE}.part"
               rm "$FILE"
             fi
           done
 
+      - name: Prepare artifact for upload
+        working-directory: ./coscine-static-site-generator/
+        run: |
+          # Tar the directory to ensure split files are included correctly
+          tar -cf ../public-artifact.tar ../public
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./public
+          path: ../public-artifact.tar
+
+      # - name: Upload artifact
+      #   uses: actions/upload-pages-artifact@v1
+      #   with:
+      #     path: ./public
 
   deploy:
     environment:

@@ -83,16 +83,15 @@ jobs:
           
           # Generate dynamic navigation HTML
           HTML_NAV=""
-          BASE_URL="https://catgonzftw1.github.io/InvestiGUT"  # Define the base URL
           for RESOURCE in "${RESOURCE_NAMES[@]}"; do
-            HTML_NAV+="<a class='tab' href='$BASE_URL/$RESOURCE/index.html' target='_blank'>$RESOURCE</a>"
+            HTML_NAV+="<a class='tab' href='/InvestiGUT/$RESOURCE/index.html' target='_blank'>$RESOURCE</a>"
           done
 
           # Create the InvestiGUT directory if it doesn't exist
           mkdir -p ../public/InvestiGUT
 
           # Ensure the navigation.html file is placed in the correct directory
-          echo "$HTML_NAV" > ../public/InvestiGUT/index.html
+          echo "$HTML_NAV" > ../public/InvestiGUT/navigation.html
 
       - name: Dynamic file splitting
         working-directory: ./coscine-static-site-generator/

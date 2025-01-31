@@ -45,7 +45,7 @@ jobs:
         working-directory: ./coscine-static-site-generator/
         run: python -m src -t "$COSCINE_API_TOKEN" -p "$PROJECT_NAME" -r "$RESOURCE_NAME" -y -o ../public
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-pages-artifact@v3.0.1
         with:
           path: ./public
 
